@@ -10,7 +10,6 @@ public class Joueur {
 
     int id;
     List<Frame> listeFrames = new ArrayList<Frame>();
-
     public Joueur(int id, ArrayList<Frame> frames){
         this.id = id;
         listeFrames = frames;
@@ -21,10 +20,14 @@ public class Joueur {
         for(int i = 0; i<listeFrames.size() ; i++){
             Frame frameCourante = listeFrames.get(i);
             Frame frameSuivante = listeFrames.get(i+1);
-            if(frameCourante.isStrike()){
-                score += 10 + frameSuivante.getPremier();
-            }else  if(frameCourante.isSpare()){
-                score += 10 + frameSuivante.getPremier();
+             if(frameCourante.isStrike() && i < listeFrames.size()-1){ //Vérifier qu'on n'est pas au dernier lancé
+                if(frameSuivante.isStrike() && i < listeFrames.size()){
+                    score += 20 + listeFrames.get(i+2).getPremier();
+                }else{
+                    score += 10 + frameSuivante.score();
+                }
+            }else if(frameCourante.isSpare()){
+                 score += 10 + frameSuivante.getPremier();
             } else{
                 score += frameCourante.getPremier() + frameCourante.getSecond();
             }
