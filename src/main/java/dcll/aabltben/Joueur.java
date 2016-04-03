@@ -43,7 +43,6 @@ public class Joueur {
                 if(secondNextFrameIndx < listeFrames.size()) {
                     scoreFrame += listeFrames.get(secondNextFrameIndx).getPremier();
                 }
-
             } else {
                 scoreFrame += nextFrame.getPremier() + nextFrame.getSecond();
             }
