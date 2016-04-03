@@ -17,23 +17,42 @@ public class Joueur {
 
     public int score(){
         int score = 0;
-        for(int i = 0; i<listeFrames.size() ; i++){
-            Frame frameCourante = listeFrames.get(i);
-            Frame frameSuivante = listeFrames.get(i+1);
-             if(frameCourante.isStrike() && i < listeFrames.size()-1){ //Vérifier qu'on n'est pas au dernier lancé
-                if(frameSuivante.isStrike() && i < listeFrames.size()){
-                    score += 20 + listeFrames.get(i+2).getPremier();
-                }else{
-                    score += 10 + frameSuivante.score();
-                }
-            }else if(frameCourante.isSpare()){
-                 score += 10 + frameSuivante.getPremier();
-            } else{
-                score += frameCourante.getPremier() + frameCourante.getSecond();
-            }
-        }
 
+        for(int i = 0; i < listeFrames.size(); i++) {
+            score += frameScore(i);
+        }
         return score;
     }
+
+    public int frameScore(int i){
+        Frame frameCourante = listeFrames.get(i);
+
+        int scoreFrame = frameCourante.score();
+
+        if(frameCourante.isStrike() && i < (listeFrames.size()-1)) {
+            Frame nextFrame = listeFrames.get(i+1);
+
+            if(nextFrame.isStrike()) {
+                scoreFrame += nextFrame.score();
+                int secondNextFrameIndx = i+2;
+
+                if(secondNextFrameIndx < listeFrames.size()) {
+                    scoreFrame += listeFrames.get(secondNextFrameIndx).getPremier();
+                }
+
+            } else {
+                scoreFrame += nextFrame.getPremier() + nextFrame.getSecond();
+            }
+        } else if(frameCourante.isSpare() && i < listeFrames.size()-1) {
+            scoreFrame += listeFrames.get(i+1).getPremier();
+        }
+
+        return scoreFrame;
+
+
+        //return score;
+    }
+
+
 
 }
