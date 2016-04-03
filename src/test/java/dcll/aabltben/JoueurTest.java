@@ -42,4 +42,75 @@ public class JoueurTest {
     public void testGetId() throws Exception {
         assertEquals(j.getId(),1);
     }
+
+
+    @Test
+    public void testScoreZero() throws Exception {
+        ArrayList<Frame>listFrame = new ArrayList<Frame>();
+        listFrame.add(new Frame(0, 0));
+        listFrame.add(new Frame(0, 0));
+        listFrame.add(new Frame(0, 0));
+        listFrame.add(new Frame(0, 0));
+        listFrame.add(new Frame(0, 0));
+        listFrame.add(new Frame(0, 0));
+        listFrame.add(new Frame(0, 0));
+        listFrame.add(new Frame(0, 0));
+        listFrame.add(new Frame(0, 0));
+        listFrame.add(new Frame(0, 0));
+        Joueur j = new Joueur(1, listFrame);
+        assertEquals(j.score(),0);
+    }
+
+    @Test
+    public void testScoreStrike() throws Exception {
+        ArrayList<Frame>listFrame = new ArrayList<Frame>();
+        listFrame.add(new Frame(10, 0));
+        listFrame.add(new Frame(10, 0));
+        listFrame.add(new Frame(10, 0));
+        listFrame.add(new Frame(10, 0));
+        listFrame.add(new Frame(10, 0));
+        listFrame.add(new Frame(10, 0));
+        listFrame.add(new Frame(10, 0));
+        listFrame.add(new Frame(10, 0));
+        listFrame.add(new Frame(10, 0));
+        listFrame.add(new Frame(10, 0));
+        listFrame.add(new Frame(10, 0));
+        Joueur j = new Joueur(1, listFrame);
+        assertEquals(j.score(),300);
+    }
+
+    @Test
+    public void testScoreSpare() throws Exception {
+        ArrayList<Frame>listFrame = new ArrayList<Frame>();
+        listFrame.add(new Frame(5, 5));
+        listFrame.add(new Frame(5, 5));
+        listFrame.add(new Frame(5, 5));
+        listFrame.add(new Frame(5, 5));
+        listFrame.add(new Frame(5, 5));
+        listFrame.add(new Frame(5, 5));
+        listFrame.add(new Frame(5, 5));
+        listFrame.add(new Frame(5, 5));
+        listFrame.add(new Frame(5, 5));
+        listFrame.add(new Frame(5, 5));
+        listFrame.add(new Frame(0, 5));
+        Joueur j = new Joueur(1, listFrame);
+        assertEquals(j.score(),150);
+    }
+
+    @Test
+    public void testScore1() throws Exception {
+        ArrayList<Frame>listFrame = new ArrayList<Frame>();
+        listFrame.add(new Frame(10, 0));
+        listFrame.add(new Frame(10, 0));
+        listFrame.add(new Frame(10, 0));
+        listFrame.add(new Frame(10, 0));
+        listFrame.add(new Frame(10, 0));
+        listFrame.add(new Frame(0, 0));
+        listFrame.add(new Frame(0, 0));
+        listFrame.add(new Frame(0, 0));
+        listFrame.add(new Frame(0, 0));
+        listFrame.add(new Frame(0, 0));
+        Joueur j = new Joueur(1, listFrame);
+        assertEquals(j.score(),120);
+    }
 }

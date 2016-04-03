@@ -29,6 +29,12 @@ public class Frame {
         return (premier + second == 10 && premier != 10);
     }
 
-
+    public int score(){
+        if(this.isSpare() || this.isStrike()){
+            return 10;
+        }else{
+            return premier+second;
+        }
+    }
 
 }
