@@ -8,32 +8,37 @@ public class Frame {
 
     private int premier;
     private int second;
+    private final int nombreDeQuilles = 10;
 
     public Frame(final int premierLance, final int secondLance) {
         this.premier = premierLance;
         this.second = secondLance;
     }
+    public final boolean isValide() {
+        return premier + second <= nombreDeQuilles;
+    }
 
-    public int getPremier() {
+    public final int getPremier() {
         return premier;
     }
 
-    public int getSecond() {
+    public final int getSecond() {
         return second;
     }
-    public boolean isStrike() {
-        return premier == 10;
+    public final boolean isStrike() {
+        return premier == nombreDeQuilles;
     }
 
-    public boolean isSpare() {
-        return (premier + second == 10 && premier != 10);
+    public final boolean isSpare() {
+        return (premier + second == nombreDeQuilles
+                && premier != nombreDeQuilles);
     }
 
-    public int score(){
-        if(this.isSpare() || this.isStrike()){
-            return 10;
-        }else{
-            return premier+second;
+    public final int score() {
+        if (this.isSpare() || this.isStrike()) {
+            return nombreDeQuilles;
+        } else {
+            return premier + second;
         }
     }
 

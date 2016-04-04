@@ -44,4 +44,12 @@ public class FrameTest {
         assertNotEquals(f.getPremier(),10);
         assertEquals(f.getPremier()+f.getSecond(),10);
     }
+
+    @Test
+    public void TestIsValide() throws Exception{
+        f=new Frame(11,5);
+        assertFalse(f.isValide());
+        f=new Frame(5,3);
+        assertTrue(f.isValide());
+    }
 }

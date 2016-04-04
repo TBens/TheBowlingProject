@@ -113,4 +113,23 @@ public class JoueurTest {
         Joueur j = new Joueur(1, listFrame);
         assertEquals(j.score(),120);
     }
+
+    @Test
+    public void TestInvalide() throws Exception{
+        ArrayList<Frame>listFrame = new ArrayList<Frame>();
+        listFrame.add(new Frame(10, 0));
+        listFrame.add(new Frame(10, 0));
+        listFrame.add(new Frame(10, 0));
+        listFrame.add(new Frame(10, 0));
+        listFrame.add(new Frame(10, 0));
+        listFrame.add(new Frame(0, 0));
+        listFrame.add(new Frame(0, 0));
+        listFrame.add(new Frame(0, 0));
+        listFrame.add(new Frame(0, 0));
+        listFrame.add(new Frame(0, 0));
+        listFrame.add(new Frame(0, 0));
+        Joueur j = new Joueur(1, listFrame);
+        assertEquals(j.frameScore(9),0);
+
+    }
 }
