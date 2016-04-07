@@ -29,7 +29,6 @@ public class Joueur {
     }
 
     /**
-     *
      * @return l'identifiant du joueur.
      */
     public final int getId() {
