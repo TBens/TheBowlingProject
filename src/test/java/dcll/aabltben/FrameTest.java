@@ -3,11 +3,10 @@ package dcll.aabltben;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.*;
 
 /**
- * Created by Thomas BENABENT on 03/04/2016.
+ * Created by alexandre on 31/03/2016.
  */
 public class FrameTest {
     Frame f;
@@ -44,5 +43,13 @@ public class FrameTest {
         f=new Frame(5,5);
         assertNotEquals(f.getPremier(),10);
         assertEquals(f.getPremier()+f.getSecond(),10);
+    }
+
+    @Test
+    public void TestIsValide() throws Exception{
+        f=new Frame(11,5);
+        assertFalse(f.isValide());
+        f=new Frame(5,3);
+        assertTrue(f.isValide());
     }
 }

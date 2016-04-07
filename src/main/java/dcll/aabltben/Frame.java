@@ -1,55 +1,42 @@
 package dcll.aabltben;
 
 /**
- * Created by Thomas BENABENT on 10/03/2016.
+<<<<<<< HEAD
+ * Created by alexandre on 10/03/2016.
  */
 public class Frame {
+
     private int premier;
     private int second;
+    private final int nombreDeQuilles = 10;
 
-    /**
-     * @param premier premier lancé
-     * @param second
-     */
-    public Frame(int premier, int second) {
-        this.premier = premier;
-        this.second = second;
+    public Frame(final int premierLance, final int secondLance) {
+        this.premier = premierLance;
+        this.second = secondLance;
+    }
+    public final boolean isValide() {
+        return premier + second <= nombreDeQuilles;
     }
 
-    /**
-     * @return
-     */
-    public int getPremier() {
+    public final int getPremier() {
         return premier;
     }
 
-    /**
-     * @return
-     */
-    public int getSecond() {
+    public final int getSecond() {
         return second;
     }
-
-    /**
-     * @return
-     */
-    public boolean isStrike() {
-        return premier == 10;
+    public final boolean isStrike() {
+        return premier == nombreDeQuilles;
     }
 
-    /**
-     * @return
-     */
-    public boolean isSpare() {
-        return (premier + second == 10 && premier != 10);
+    public final boolean isSpare() {
+        return (premier + second == nombreDeQuilles
+                && premier != nombreDeQuilles);
     }
 
-    /**
-     * @return
-     */
-    public int score() {
+    public final int score() {
         if (this.isSpare() || this.isStrike()) {
-            return 10;
+            return nombreDeQuilles;
         } else {
             return premier + second;
         }

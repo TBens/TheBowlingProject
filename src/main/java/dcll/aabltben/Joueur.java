@@ -8,32 +8,33 @@ import java.util.List;
  */
 public class Joueur {
 
-    int id;
-    List<Frame> listeFrames = new ArrayList<Frame>();
-
-    public Joueur(int id, ArrayList<Frame> frames) {
-        this.id = id;
+    private int id;
+    private List<Frame> listeFrames = new ArrayList<Frame>();
+    public Joueur(final int num, final ArrayList<Frame> frames) {
+        this.id = num;
         listeFrames = frames;
     }
 
-    public int getId() {
+    public final int getId() {
         return id;
     }
 
-    public int score() {
+    public final int score() {
         int score = 0;
-
         for (int i = 0; i < listeFrames.size(); i++) {
-            score += frameScore(i);
+            if (listeFrames.get(i).isValide()) {
+                score += frameScore(i);
+            } else {
+                System.out.println("frame " + i + " non valide");
+                return -1;
+            }
         }
         return score;
     }
 
-    public int frameScore(int i) {
+    public final int frameScore(final int i) {
         Frame frameCourante = listeFrames.get(i);
-
         int scoreFrame = frameCourante.score();
-
         if (frameCourante.isStrike() && i < (listeFrames.size() - 1)) {
             Frame nextFrame = listeFrames.get(i + 1);
 
@@ -42,18 +43,20 @@ public class Joueur {
                 int secondNextFrameIndx = i + 2;
 
                 if (secondNextFrameIndx < listeFrames.size()) {
-                    scoreFrame += listeFrames.get(secondNextFrameIndx).getPremier();
+                    scoreFrame += listeFrames.get(secondNextFrameIndx)
+                            .getPremier();
                 }
-
             } else {
                 scoreFrame += nextFrame.getPremier() + nextFrame.getSecond();
             }
         } else if (frameCourante.isSpare() && i < listeFrames.size() - 1) {
             scoreFrame += listeFrames.get(i + 1).getPremier();
-        }
+        } else if (listeFrames.size() == 11 && i == 9
+                && !frameCourante.isSpare() && !frameCourante.isStrike()) {
+            System.out.println("erreur derniere frame bonus non autorisee\n");
 
+        }
         return scoreFrame;
     }
-
 
 }
