@@ -8,17 +8,38 @@ import java.util.List;
  */
 public class Joueur {
 
+    /**
+     * Identifiant du joueur.
+     */
     private int id;
+
+    /**
+     * Liste de Frames du joueur.
+     */
     private List<Frame> listeFrames = new ArrayList<Frame>();
+
+    /**
+     * Constructeur d'un joueur.
+     * @param num identifiant du joueur.
+     * @param frames liste de frames.
+     */
     public Joueur(final int num, final ArrayList<Frame> frames) {
         this.id = num;
         listeFrames = frames;
     }
 
+    /**
+     *
+     * @return l'identifiant du joueur.
+     */
     public final int getId() {
         return id;
     }
 
+    /**
+     * Retourne le score du joueur.
+     * @return un int qui correspond au score du joueur.
+     */
     public final int score() {
         int score = 0;
         for (int i = 0; i < listeFrames.size(); i++) {
@@ -32,6 +53,11 @@ public class Joueur {
         return score;
     }
 
+    /**
+     *
+     * @param i correspond au numéro de la frame.
+     * @return le score pour une frame donnée en paramètre.
+     */
     public final int frameScore(final int i) {
         Frame frameCourante = listeFrames.get(i);
         int scoreFrame = frameCourante.score();
