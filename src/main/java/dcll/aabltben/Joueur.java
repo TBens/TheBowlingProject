@@ -7,6 +7,15 @@ import java.util.List;
  * Created by Thomas BENABENT on 10/03/2016.
  */
 public class Joueur {
+    /**
+     * nombre de lancer maximum.
+     */
+    private final int nombreLancerMax = 11;
+
+    /**
+     * identifiant de la derniere frame.
+     */
+    private final int derniereFrame = 9;
 
     /**
      * Identifiant du joueur.
@@ -76,7 +85,7 @@ public class Joueur {
             }
         } else if (frameCourante.isSpare() && i < listeFrames.size() - 1) {
             scoreFrame += listeFrames.get(i + 1).getPremier();
-        } else if (listeFrames.size() == 11 && i == 9
+        } else if (listeFrames.size() == nombreLancerMax && i == derniereFrame
                 && !frameCourante.isSpare() && !frameCourante.isStrike()) {
             System.out.println("erreur derniere frame bonus non autorisee\n");
 

@@ -31,6 +31,11 @@ public class JoueurTest {
     }
 
     @Test
+    public void TestConstruct() throws Exception{
+        Joueur jou=new Joueur(1,new ArrayList<Frame>());
+        assertEquals(jou.getId(),1);
+    }
+    @Test
     public void testScore() throws Exception {
         assertFalse("non vide",f.isEmpty());
         assertTrue ("score Max",j.score()<=300);
@@ -130,6 +135,25 @@ public class JoueurTest {
         listFrame.add(new Frame(0, 0));
         Joueur j = new Joueur(1, listFrame);
         assertEquals(j.frameScore(9),0);
+
+    }
+
+    @Test
+    public void TestFrameBonus() throws Exception{
+        ArrayList<Frame>listFrame = new ArrayList<Frame>();
+        listFrame.add(new Frame(10, 0));
+        listFrame.add(new Frame(10, 0));
+        listFrame.add(new Frame(10, 0));
+        listFrame.add(new Frame(10, 0));
+        listFrame.add(new Frame(10, 0));
+        listFrame.add(new Frame(10, 0));
+        listFrame.add(new Frame(10, 0));
+        listFrame.add(new Frame(10, 0));
+        listFrame.add(new Frame(10, 0));
+        listFrame.add(new Frame(7, 3));
+        listFrame.add(new Frame(0, 2));
+        Joueur j = new Joueur(1, listFrame);
+        assertEquals(j.frameScore(9),10);
 
     }
 }
